@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const User = require('./User')
-const Food = require('./food')
+const Food = require('./Food')
 const PusrchaseHistory = require('./purchaseHistory')
 const foodHistory = require('./foodHistory')
 const db = require('./database')
