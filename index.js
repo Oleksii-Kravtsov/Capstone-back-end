@@ -36,9 +36,9 @@ db.sync().then(() => {
 })  
 
 // //route for the home page
-// app.get("/", (req, res) => {
-//     res.send("nothing here")
-// })
+app.get("/", (req, res) => {
+    res.send("nothing here")
+})
 
 
 
