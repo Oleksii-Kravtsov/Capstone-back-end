@@ -15,8 +15,7 @@ const Food = db.define('food', {
       }
     },
     image: {
-        type: sequelize.STRING,
-        allowNull: false,
+        type: sequelize.STRING
     },
     description: {
         type: sequelize.STRING,
