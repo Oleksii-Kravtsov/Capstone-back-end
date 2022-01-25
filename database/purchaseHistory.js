@@ -3,10 +3,6 @@ const db = require('./database')
 
 //Campus table
 const PusrchaseHistory = db.define('purchase_history', {
-    user_id: {
-      type: sequelize.STRING,
-      allowNull: false,
-    },
     first_name: {
       type: sequelize.STRING,
       allowNull: false,
@@ -21,6 +17,32 @@ const PusrchaseHistory = db.define('purchase_history', {
       validate :{
         //validate the phone number is valide
       }
+    },
+    address: {
+      type: sequelize.STRING,
+      allowNull: false
+    },
+    city: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    state: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    zip: {
+        type: sequelize.INTEGER,
+        allowNull: false,
+        validate:{
+          check(zip){
+            if (!(/^\d{5}$/.test(zip))){
+              throw new Error('zip code incorrect')
+            }
+          }
+        }
+    },
+    order_complete:{
+      type : sequelize.BOOLEAN
     }
   },{
   updatedAt: false
