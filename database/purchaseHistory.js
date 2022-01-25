@@ -15,7 +15,10 @@ const PusrchaseHistory = db.define('purchase_history', {
       type: sequelize.STRING,
       allowNull: false,
       validate :{
-        //validate the phone number is valide
+        validator: function(v) {
+          const phoneValidationRegex = /\d{3}-\d{3}-\d{4}/
+          return phoneValidationRegex.test(v)
+        },
       }
     },
     address: {
