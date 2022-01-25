@@ -7,15 +7,15 @@ const morgan = require('morgan')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-
 app.use(bodyParser.json())
-
 app.use(cors())
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 const { db } = require('./database/index')
+const useApi = require('./api')
+app.use('/api',useApi)
 
 //parameters for sequelize to connect to database
 // const sequelize = new Sequelize('postgres://mlmfhixyvxdbfb:8d015980b6924a607ac5e728f7464cd428cf030b186a495789f7e06cbced16ce@ec2-50-17-255-120.compute-1.amazonaws.com:5432/d1lek14n0cl2vc')

@@ -7,11 +7,22 @@ const PusrchaseHistory = db.define('purchase_history', {
       type: sequelize.STRING,
       allowNull: false,
     },
-    date: {
-        type: sequelize.DATE,
-        allowNull: false,
+    first_name: {
+      type: sequelize.STRING,
+      allowNull: false,
+    },
+    last_name: {
+      type: sequelize.STRING,
+      allowNull: false,
+    },
+    phone: {
+      type: sequelize.STRING,
+      allowNull: false,
+      validate :{
+        //validate the phone number is valide
+      }
     }
-},{
+  },{
   updatedAt: false
 })
 
