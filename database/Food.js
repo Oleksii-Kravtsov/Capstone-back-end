@@ -11,7 +11,6 @@ const Food = db.define('food', {
       type: sequelize.REAL,
       allowNull: false,
       validate:{
-        //check if password contain uppercase and lowercase and ...
       }
     },
     image: {

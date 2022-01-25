@@ -23,18 +23,23 @@ router.route('/')
 
 })
 
-router.route("/:id")
+router.route("/:type")
 .get(async (req, res)=>{
     try{
-        const food = await Food.findByPk(req.params.id);
-        res.send(food)
+        if (!Number(req.params.type)){
+            const food = await Food.findAll({where:{type:req.params.type}});
+            res.send(food)
+        } else{
+            const food = await Food.findByPk(req.params.type);
+            res.send(food)
+        }
     } catch(err){
       res.send(err)
     }
 })
 .delete( async (req,res)=>{
     try{
-        const food = await Food.findByPk(req.params.id)
+        const food = await Food.findByPk(req.params.type)
         await food.destroy()
     } catch(err){
         res.send(err)
@@ -42,8 +47,7 @@ router.route("/:id")
 })
 .put(async (req,res)=>{
     try{
-        console.log(req.params.id)
-        const food = await Food.findByPk(req.params.id)
+        const food = await Food.findByPk(req.params.type)
         food.update(req.body)
     } catch(err){
         res.send(err)

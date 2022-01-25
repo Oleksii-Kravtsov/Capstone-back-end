@@ -2,6 +2,7 @@ const sequelize = require ("sequelize")
 const db = require('./database')
 
 //Campus table
+//..../api/purchaseHistory
 const PusrchaseHistory = db.define('purchase_history', {
     first_name: {
       type: sequelize.STRING,
