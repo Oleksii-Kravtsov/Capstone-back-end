@@ -11,7 +11,7 @@ router.route('/')
       res.send(err)
     }
 })
-.post(async(req, res)=>{ //deal with post request / add campus
+.post(async(req, res)=>{ //deal with post request / add 
         console.log(req.body)
 
         await Food.create(req.body).then(function(food){
@@ -21,6 +21,33 @@ router.route('/')
           res.send(err.message)
         })   
 
+})
+
+router.route("/:id")
+.get(async (req, res)=>{
+    try{
+        const food = await Food.findByPk(req.params.id);
+        res.send(food)
+    } catch(err){
+      res.send(err)
+    }
+})
+.delete( async (req,res)=>{
+    try{
+        const food = await Food.findByPk(req.params.id)
+        await food.destroy()
+    } catch(err){
+        res.send(err)
+    }
+})
+.put(async (req,res)=>{
+    try{
+        console.log(req.params.id)
+        const food = await Food.findByPk(req.params.id)
+        food.update(req.body)
+    } catch(err){
+        res.send(err)
+    }
 })
 
 module.exports = router

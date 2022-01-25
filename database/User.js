@@ -22,20 +22,16 @@ const User = db.define('user', {
         }
     },
     address: {
-        type: sequelize.STRING,
-        allowNull: false
+        type: sequelize.STRING
     },
     city: {
-        type: sequelize.STRING,
-        allowNull: false
+        type: sequelize.STRING
     },
     state: {
-        type: sequelize.STRING,
-        allowNull: false
+        type: sequelize.STRING
     },
     zip: {
         type: sequelize.INTEGER,
-        allowNull: false,
         validate:{
           check(zip){
             if (!(/^\d{5}$/.test(zip))){
