@@ -1,16 +1,12 @@
 const router = require('express').Router()
-const { Food } = require('../database/Food')
+const { Food } = require('../database/index')
 
 //listen on .../api/food
 router.route('/')
 .get(async (req, res)=>{ //list all campuses
     try{
         const food = await Food.findAll();
-        if (food.length>0){
-          res.send(food)
-        } else{
-          res.send('There are no foods')
-        }
+        res.send(food)
     } catch(err){
       res.send(err)
     }
