@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../database/User')
+const { User } = require('../database/index')
 
 //listen on .../api/user
 router.route('/')
