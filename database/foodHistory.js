@@ -8,6 +8,8 @@ const FoodHistory = db.define('food_history', {
         allowNull: false,
     }
     //purchase_id and food_id
+},{
+    updatedAt: false
 })
 
 module.exports = FoodHistory

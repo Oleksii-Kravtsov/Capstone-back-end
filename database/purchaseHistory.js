@@ -11,6 +11,8 @@ const PusrchaseHistory = db.define('purchase_history', {
         type: sequelize.DATE,
         allowNull: false,
     }
+},{
+  updatedAt: false
 })
 
 module.exports = PusrchaseHistory
