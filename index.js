@@ -28,7 +28,7 @@ const { db } = require('./database/index')
 // })
 
 
-db.sync().then(() => {
+db.sync({alter:true}).then(() => {
     console.log('database synced')
      app.listen(PORT, () =>
       console.log(`listening on port ${PORT}`)
