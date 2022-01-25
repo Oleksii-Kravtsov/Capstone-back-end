@@ -5,7 +5,7 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USERNAME, proc
     host: process.env.HOST,
     dialect: 'postgres',
     logging : false,
-    // native:true
+    native:true
 });
 
 
