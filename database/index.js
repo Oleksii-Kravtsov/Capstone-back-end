@@ -39,6 +39,5 @@ module.exports = {
     Food,
     PusrchaseHistory,
     FoodHistory,
-    db,
-    Sequelize
+    db
 }
