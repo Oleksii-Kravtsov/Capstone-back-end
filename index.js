@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 const app = express()
+const env = require('dotenv').config()
 const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.json())
@@ -16,16 +17,6 @@ app.use(express.urlencoded({ extended: true }))
 const { db } = require('./database/index')
 const useApi = require('./api')
 app.use('/api',useApi)
-
-//parameters for sequelize to connect to database
-// const sequelize = new Sequelize('postgres://mlmfhixyvxdbfb:8d015980b6924a607ac5e728f7464cd428cf030b186a495789f7e06cbced16ce@ec2-50-17-255-120.compute-1.amazonaws.com:5432/d1lek14n0cl2vc')
-
-//checks if the sequelize was connected to the database
-// sequelize.authenticate().then(() => {
-//     console.log('Connection has been established successfully!!!');
-// }).catch((err)=>{
-//     console.log('Unable to connect to the database:', err);
-// })
 
 
 db.sync().then(() => {
@@ -41,4 +32,29 @@ app.get("/", (req, res) => {
 })
 
 
+//payment
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST)
 
+app.post('/payment', cors(), async (req,res)=>{
+    let {amount,id} = req.body
+    try{
+        const payment = await stripe.paymentIntents.create({
+            amount,
+            curruncy : 'USD',
+            description: "sushi res",
+            payment_method : id,
+            comfirm : true
+        })
+        console.log("Payment",payment)
+        res.json({
+            messege:"Payment Successful",
+            success:true
+        })
+      } catch(err){
+         console.log('Error',err)
+         res.json({
+             messege:'Payment failed',
+             success : false
+         })
+      }
+})
