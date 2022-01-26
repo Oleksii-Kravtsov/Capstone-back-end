@@ -58,3 +58,7 @@ app.post('/payment', cors(), async (req,res)=>{
          })
       }
 })
+
+app.get('/payment', (req,res)=>{
+    res.send("nothing here")
+})
