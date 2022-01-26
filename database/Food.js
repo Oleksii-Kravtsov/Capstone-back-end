@@ -23,7 +23,12 @@ const Food = db.define('food', {
     type: {
         type: sequelize.STRING,
         allowNull: false
-    }
+    },
+    qty: {
+      type: sequelize.INTEGER,
+      defaultValue:1,
+      noUpdate : true
+  }
 },
 {
   timestamps : false
