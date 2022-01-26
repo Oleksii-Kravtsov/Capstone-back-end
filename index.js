@@ -28,7 +28,7 @@ app.use('/api',useApi)
 // })
 
 
-db.sync().then(() => {
+db.sync({force:true}).then(() => {
     console.log('database synced')
      app.listen(PORT, () =>
       console.log(`listening on port ${PORT}`)
