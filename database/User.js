@@ -14,25 +14,6 @@ const User = db.define('user', {
             msg : 'Please enter a validate email'
           }
         }
-    },
-    address: {
-        type: sequelize.STRING
-    },
-    city: {
-        type: sequelize.STRING
-    },
-    state: {
-        type: sequelize.STRING
-    },
-    zip: {
-        type: sequelize.INTEGER,
-        validate:{
-          check(zip){
-            if (!(/^\d{5}$/.test(zip))){
-              throw new Error('zip code incorrect')
-            }
-          }
-        }
     }
 })
 
