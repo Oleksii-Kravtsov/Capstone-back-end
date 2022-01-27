@@ -18,7 +18,9 @@ const PusrchaseHistory = db.define('purchase_history', {
       validate :{
         validator: function(v) {
           const phoneValidationRegex = /\d{3}-\d{3}-\d{4}/
-          return phoneValidationRegex.test(v)
+          if(!phoneValidationRegex.test(v)){
+            throw new Error ('xxx-xxx-xxxx')
+          }
         },
       }
     },
