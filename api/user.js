@@ -23,11 +23,11 @@ router.route('/')
 
 })
 
-router.route('/:id')
-.delete( async (req,res)=>{
+router.route('/:email')
+.get( async (req,res)=>{
     try{
-        const user = await User.findByPk(req.params.id)
-        await user.destroy()
+        const user = await User.Food.findAll({where:{email:req.params.email}})
+        res.render(user)
     } catch(err){
         res.send(err)
     }
