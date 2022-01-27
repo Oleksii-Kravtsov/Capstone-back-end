@@ -28,6 +28,9 @@ const PusrchaseHistory = db.define('purchase_history', {
       type: sequelize.STRING,
       allowNull: false
     },
+    Apt :{
+      type: sequelize.STRING
+    },
     city: {
         type: sequelize.STRING,
         allowNull: false
