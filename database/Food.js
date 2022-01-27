@@ -26,7 +26,7 @@ const Food = db.define('food', {
     }
 },
 {
-  timestamps : false
+  updatedAt: false
 })
 
 module.exports = Food
