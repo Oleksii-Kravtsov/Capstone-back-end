@@ -25,8 +25,13 @@ router.route('/')
 router.route("/:id")
 .get(async (req, res)=>{
     try{
+      if (!Number(req.params.id)){
+        const user = await User.findAll({where:{email:req.params.id}});
+        res.send(user)
+    } else{
         const user = await User.findByPk(req.params.id);
         res.send(user)
+    }
     } catch(err){
       res.send(err)
     }
