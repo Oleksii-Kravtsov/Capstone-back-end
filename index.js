@@ -19,7 +19,7 @@ const useApi = require('./api')
 app.use('/api',useApi)
 
 
-db.sync({force:true}).then(() => {
+db.sync().then(() => {
     console.log('database synced')
      app.listen(PORT, () =>
       console.log(`listening on port ${PORT}`)
