@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { User } = require('../database/index')
 
-//listen on .../api/user
+//listen on .../api/food
 router.route('/')
 .get(async (req, res)=>{ //list all campuses
     try{
@@ -13,9 +13,8 @@ router.route('/')
 })
 .post(async(req, res)=>{ //deal with post request / add 
         console.log(req.body)
-
-        await User.create(req.body).then(function(user){
-          res.json(user)
+        await User.create(req.body).then(function(foodHistory){
+          res.json(foodHistory)
           console.log('successful created')
         }).catch(err=>{
           res.send(err.message)
@@ -23,23 +22,22 @@ router.route('/')
 
 })
 
-router.route('/:email')
-.get( async (req,res)=>{
+router.route("/:id")
+.get(async (req, res)=>{
     try{
-        const user = await User.Food.findAll({where:{email:req.params.email}})
-        res.render(user)
+        const user = await User.findByPk(req.params.id);
+        res.send(user)
     } catch(err){
-        res.send(err)
+      res.send(err)
     }
 })
 .put(async (req,res)=>{
-    try{
-        console.log(req.params.id)
-        const user = await User.findByPk(req.params.id)
-        user.update(req.body)
-    } catch(err){
-        res.send(err)
-    }
+  try{
+      const user = await User.findByPk(req.params.id)
+      user.update(req.body)
+  } catch(err){
+      res.send(err)
+  }
 })
 
 module.exports = router
