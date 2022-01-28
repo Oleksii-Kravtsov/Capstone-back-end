@@ -25,8 +25,8 @@ router.route('/')
 router.route("/:id")
 .get(async (req, res)=>{
     try{
-        const purchaseHistory = await PusrchaseHistory.findByPk(req.params.id);
-        res.send(purchaseHistory)
+      const purchaseHistory = await PusrchaseHistory.findAll({where:{userId:req.params.id}});
+      res.send(purchaseHistory)
     } catch(err){
       res.send(err)
     }
@@ -38,18 +38,6 @@ router.route("/:id")
   } catch(err){
       res.send(err)
   }
-})
-
-router.route("/:userId/:id")
-.get(async (req, res)=>{
-    try{
-        console.log(req.params.userId)
-        console.log(req.params.id)
-        const purchaseHistory = await PusrchaseHistory.findAll({where:{userId:req.params.userId, id:req.params.id}});
-        res.send(purchaseHistory)
-    } catch(err){
-      res.send(err)
-    }
 })
 
 module.exports = router
